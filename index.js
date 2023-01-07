@@ -5,11 +5,18 @@ require('dotenv').config();
 
 const app=express();
 const port=process.env.PORT || 3000;
-const token=process.env.TOKEN;
+const URL=process.env.REDIS_URL;
+
+let client;
 
 try
 {
-    let client=new Redis(`redis://default:${token}@eu2-funny-colt-30643.upstash.io:30643`);
+    client=new Redis(`${URL}`);
+
+    if(client)
+    {
+        console.log('CONNECTED');
+    }
 }
 
 catch(e)
