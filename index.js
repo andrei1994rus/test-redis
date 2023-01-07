@@ -196,8 +196,13 @@ app.use("/person/lpush/:elem",(req,res)=>
             console.log(elems);
             client.lpush('person',elems);
         }
-        
-        client.l
+
+        else
+        {
+            let fixed=elem.replace(/^ +/,'');
+            console.log(fixed);
+            client.lpush('person',fixed);
+        }
 
         return res.json({message: 'DONE!'});
     }
